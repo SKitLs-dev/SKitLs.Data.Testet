@@ -5,9 +5,9 @@ using SKitLs.Data.IO;
 using SKitLs.Data.IO.Json;
 using SKitLs.Utils.Extensions.Strings;
 
-namespace Tester.App
+namespace Tester.App.Core
 {
-    public static class Core
+    public static class Core100
     {
         public static IDataManager DataManager { get; private set; }
 
@@ -15,7 +15,9 @@ namespace Tester.App
 
         public static void Run()
         {
-            DataManager = new DataManager();
+            // v1.0
+            // DataManager = new DataManager();
+
             var path = "core/data/";
             if (!Directory.Exists(path))
                 Directory.CreateDirectory(path);
@@ -71,55 +73,10 @@ namespace Tester.App
 
             resolvedSubjectsBank.DropSave(subject);
             Console.WriteLine(resolvedSubjectsBank.Count);
-            
+
             var banks = DataManager.GetBanks();
             var notations = DataManager.GetNotations().Select(x => x.Name + " " + x.Count);
             Console.WriteLine("Declared banks: " + notations.JoinAll(", "));
-        }
-
-        public class MyDataManager : DataManager
-        {
-            public override void InitializeDeclarations()
-            {
-                base.InitializeDeclarations();
-
-                var path = "core/data/";
-                if (!Directory.Exists(path))
-                    Directory.CreateDirectory(path);
-
-                var subjectsBank = new DataBank<long, SubjectModelDso>("Subjects", "Taught Subjects", DropStrategy.Disable)
-                {
-                    Reader = new JsonReader<SubjectModelDso>(path + "subjects.json") { CreateNewFile = true },
-                    Writer = new JsonWriter<SubjectModelDso, long>(path + "subjects.json"),
-                    IdGenerator = new SolidLongIdGen(DefaultLongId),
-                    NewInstanceGenerator = () => new SubjectModelDso(),
-                };
-
-                var classesBank = new DataBank<long, ClassModelDso>("Classes", "Classes, Groups, and Subgroups", DropStrategy.Disable)
-                {
-                    Reader = new JsonReader<ClassModelDso>(path + "classes.json") { CreateNewFile = true },
-                    Writer = new JsonWriter<ClassModelDso, long>(path + "classes.json"),
-                    IdGenerator = new SolidLongIdGen(DefaultLongId),
-                    NewInstanceGenerator = () => new ClassModelDso(),
-                };
-
-                var teachersBank = new DataBank<Guid, TeacherModelDso>("Teachers", "Teachers and Their Schedules", DropStrategy.Delete)
-                {
-                    Reader = new JsonReader<TeacherModelDso>(path + "teachers.json") { CreateNewFile = true },
-                    Writer = new JsonWriter<TeacherModelDso, Guid>(path + "teachers.json"),
-                    IdGenerator = new GuidIdGenerator(),
-                    NewInstanceGenerator = () => new TeacherModelDso(),
-                };
-
-                DataManager.Declare(subjectsBank);
-                subjectsBank.OnBankDataUpdated += (count) =>
-                {
-                    Console.WriteLine($"{count} subject(s) updated.");
-                };
-
-                DataManager.Declare(classesBank);
-                DataManager.Declare(teachersBank);
-            }
         }
 
         public class SubjectModelDso : ModelDso<long>

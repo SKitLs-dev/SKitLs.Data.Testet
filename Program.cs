@@ -1,4 +1,4 @@
-﻿using Tester.App;
+﻿using Tester.App.Core;
 
 namespace Tester
 {
@@ -13,7 +13,7 @@ namespace Tester
             //IO.Run();
 
             // Core
-            Core.Run();
+            Core110.Run();
         }
     }
 }
