@@ -1,0 +1,47 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Resources\Locals\en-myform.json" />
+    <None Remove="test\io_test.xlsx" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Resources\Locals\en-myform.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="test\io_test.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="SKitLs.Data.InputForms" Version="1.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SKitLs.Data.Core\SKitLs.Data.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="C:\Users\Sargeras\.nuget\packages\skitls.data.inputforms\1.0.0-rc.2\contentFiles\any\any\Resources\Locals\en-iforms.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Update="C:\Users\Sargeras\.nuget\packages\skitls.data.inputforms\1.0.0-rc.2\contentFiles\any\any\Resources\Locals\ru-iforms.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Update="C:\Users\Sargeras\.nuget\packages\skitls.data.inputforms\1.0.0\contentFiles\any\any\Resources\Locals\en-iforms.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="C:\Users\Sargeras\.nuget\packages\skitls.data.inputforms\1.0.0\contentFiles\any\any\Resources\Locals\ru-iforms.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+</Project>

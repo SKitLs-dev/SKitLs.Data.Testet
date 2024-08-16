@@ -1,0 +1,8 @@
+﻿{
+	"iforms.MyFormData.Name.caption": "Name",
+	"iforms.MyFormData.Name.description": "Enter your name",
+	"iforms.MyFormData.Age.caption": "Age",
+	"iforms.MyFormData.Age.description": "Enter your age",
+	"iforms.MyFormData.Profession.caption": "Profession",
+	"iforms.MyFormData.Profession.description": "Select your profession (d - doctor, f - fireman, p - programmer)"
+}
